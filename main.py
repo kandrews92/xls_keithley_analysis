@@ -1,20 +1,20 @@
 if __name__=="__main__":
     import os, io, numpy as np, matplotlib.pyplot as plt, pandas as pd
 
-    from file_methods import get_FilePaths, get_DataFrames, get_TestName,\
+    from src/file_methods import get_FilePaths, get_DataFrames, get_TestName,\
                 get_LastExecuted, get_OnlyFname, get_SubDir, DisplayFiles,\
                 CreateNewXLS
 
-    from res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
+    from src/res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
                 get_NumPointsBias_res2t, get_DrainCurrent_res2t
 
-    from vgs_id import get_VoltageBias_vgs_id, get_GateVoltageStart_vgs_id,\
+    from src/vgs_id import get_VoltageBias_vgs_id, get_GateVoltageStart_vgs_id,\
                 get_GateVoltageFinal_vgs_id, get_NumGatePoints_vgs_id,\
                 get_DrainCurrent_vgs_id, get_OnOffRatio_vgs_id,\
                 plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
                 plot_DualAxisDrainCurrent_vgs_id
 
-    from vds_id import get_VoltageBiasStart_vds_id, get_VoltageBiasFinal_vds_id,\
+    from src/vds_id import get_VoltageBiasStart_vds_id, get_VoltageBiasFinal_vds_id,\
                 get_VoltageBiasNumPoints_vds_id, get_GateVoltageStart_vds_id,\
                 get_GateVoltageFinal_vds_id, get_NumGatePoints_vds_id,\
                 get_GateVoltageStep_vds_id, generate_GateVoltageList_vds_id,\
