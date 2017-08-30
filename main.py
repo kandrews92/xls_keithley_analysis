@@ -1,24 +1,25 @@
 if __name__=="__main__":
     import os, io, numpy as np, matplotlib.pyplot as plt, pandas as pd
 
-    from src/file_methods import get_FilePaths, get_DataFrames, get_TestName,\
+    from file_methods import get_FilePaths, get_DataFrames, get_TestName,\
                 get_LastExecuted, get_OnlyFname, get_SubDir, DisplayFiles,\
                 CreateNewXLS
 
-    from src/res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
+    from res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
                 get_NumPointsBias_res2t, get_DrainCurrent_res2t
 
-    from src/vgs_id import get_VoltageBias_vgs_id, get_GateVoltageStart_vgs_id,\
+    from vgs_id import get_VoltageBias_vgs_id, get_GateVoltageStart_vgs_id,\
                 get_GateVoltageFinal_vgs_id, get_NumGatePoints_vgs_id,\
-                get_DrainCurrent_vgs_id, get_OnOffRatio_vgs_id,\
-                plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
-                plot_DualAxisDrainCurrent_vgs_id
+                get_DrainCurrent_vgs_id, get_OnOffRatio_vgs_id
 
-    from src/vds_id import get_VoltageBiasStart_vds_id, get_VoltageBiasFinal_vds_id,\
+    from vds_id import get_VoltageBiasStart_vds_id, get_VoltageBiasFinal_vds_id,\
                 get_VoltageBiasNumPoints_vds_id, get_GateVoltageStart_vds_id,\
                 get_GateVoltageFinal_vds_id, get_NumGatePoints_vds_id,\
                 get_GateVoltageStep_vds_id, generate_GateVoltageList_vds_id,\
                 get_DrainCurrent_vds_id
+
+    from plotting import plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
+                plot_DualAxisDrainCurrent_vgs_id, plot_NormDrainCurrent_vgs_id
                 
 
 
@@ -57,9 +58,7 @@ if __name__=="__main__":
             if measurement_name == measurement_types[1]: # vgs-id#1@1
                 bias = get_VoltageBias_vgs_id(settings) # get bias voltage 
                 get_DrainCurrent_vgs_id(data, bias) # convert the data sheet
-                #plot_DrainCurrent_vgs_id(data)
-                #plot_AbsDrainCurrent_vgs_id(data)
-                #plot_DualAxisDrainCurrent_vgs_id(data)
+                plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
 
             if measurement_name == measurement_types[2]: # vds-id#1@1
                 vbg_start = get_GateVoltageStart_vds_id(settings)

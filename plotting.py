@@ -1,3 +1,4 @@
+
 def plot_DrainCurrent_vgs_id(df):
     import matplotlib.pyplot as plt
     plt.clf()
@@ -43,10 +44,19 @@ def plot_DualAxisDrainCurrent_vgs_id(df):
     ax2.set_ylabel(r'$\left|I_\mathrm{ds}\right|\,(\mathrm{A})$', fontsize=18)
     plt.show()
 
-def plot_LogYDrainCurrent_vgs_id(df):
+def plot_NormDrainCurrent_vgs_id(df, bias, savename):
     import matplotlib.pyplot as plt
-    pass
-
-def plot_NormDrainCurrent_vgs_id(df):
-    import matplotlib.pyplot as plt
-    pass
+    plt.clf() # clear any figs in buffer
+    headers = list(df) # column headers as list
+    for i in range( len(headers) ):
+        if 'Idrain(uA/um)' in headers[i]:
+            norm_idx = i # store idx of normIds
+            
+    plt.plot( df['GateV'], df[headers[norm_idx]], linewidth=4, label=r'$V_\mathrm{ds}=$'+str(bias)+r'$\,\mathrm{V}$')
+    plt.ylabel(r'$I_\mathrm{ds}\,(\mu\mathrm{A}/\mu\mathrm{m})$', fontsize=22)
+    plt.xlabel(r'$V_\mathrm{bg}\,(\mathrm{V})$', fontsize=22)
+    plt.tick_params(labelsize=18) # make label size = 18
+    plt.legend(loc='best') # set legend location
+    plt.tight_layout() # tighten border edges
+    savename=savename+"-norm-drain-plot-linear.png" # plot will be saved as png
+    plt.savefig(savename) # save fig as png
