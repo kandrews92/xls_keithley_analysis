@@ -185,3 +185,25 @@ def CreateNewXLS(df, new_fame):
     writer = pd.ExcelWriter(new_fame) # open new xls to write df
     df.to_excel(writer, index=False) # write w/o indicies
     writer.save() # save file under new name
+
+def PutAllPngToPdf(directory, extension=['.png']):
+    from fpdf import FPDF
+    import os 
+    file_paths = [] # init of list of strings to be returned
+
+    # walk the tree
+    for root, directories, files in os.walk(directory):
+        for filename in files:
+            # join the two strings in order to form the full filepath 
+            filepath = os.path.join(root, filename)
+            # check the filepath's extension, if wanted then add to list
+            # if arg:extension is blank, then all files found in tree
+            # will be added
+            for ext in extension:
+                if filepath.lower().endswith(ext):
+                    file_paths.append(filepath) # add it to the list.
+    pdf = FPDF()
+    for image in file_paths:
+        pdf.add_page()
+        pdf.image(image)
+    pdf.output("yourfile.pdf", 'F')

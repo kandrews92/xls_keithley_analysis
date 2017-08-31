@@ -1,3 +1,4 @@
+from vds_id import generate_GateVoltageList_vds_id
 
 def plot_DrainCurrent_vgs_id(df, bias, savename):
     """
@@ -130,6 +131,17 @@ def plot_NormDrainCurrent_vgs_id(df, bias, savename):
     plt.savefig( savename ) # save as png
 
 def plot_AllSubplots_vgs_id(df):
+    """
+    /*-----------------------------------------------------*/
+    description:
+   
+    /*-----------------------------------------------------*/
+    args: 
+        
+    returns:
+        None
+    /*----------------------------------------------------*/
+    """
     import matplotlib.pyplot as plt 
     
     headers = list(df) # column headers as list
@@ -152,15 +164,162 @@ def plot_AllSubplots_vgs_id(df):
 
     plt.show()
 
-def plot_DrainCurrent_vds_id(df):
+def plot_DrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
+    """
+    /*-----------------------------------------------------*/
+    description:
+   
+    /*-----------------------------------------------------*/
+    args: 
+        
+    returns:
+        None
+    /*----------------------------------------------------*/
+    """
     import matplotlib.pyplot as plt 
+    plt.clf()
     headers = list(df) # get column headers
+    # get a list of gate values 
+    gatevals = generate_GateVoltageList_vds_id(gate_start, gate_final, gate_step)
+    idx = 1 # init an index. To be used for GateV(idx) or DrainV(idx)...
+    # loop over all headers in an analyzed df
+    for head in headers:
+        # check to see if the correct string is found. 
+        # for example the first search is for DrainI(1), then DrainI(2)
+        # and so on.
+        if 'DrainI'+'('+str(idx)+')' == head:
+            # get the column index of the string
+            col_idx = df.columns.get_loc(head)+2 # +2 because we want
+            # the column ahead of it. The DrainI(uA) column
+            # DrainI(uA) = col_idx +2
+            # absDrainI(A) = col_idx +1
+            # NormDrainI(uA/um) = col_idx +3
 
-def plot_AbsDrainCurrent_vds_id(df):
+            # plot each column
+            drainVdata = df['DrainV'+'('+str(idx)+')'] # Vds data
+            plt.plot( drainVdata, df[headers[col_idx]], linewidth=4,\
+                label=r'$V_\mathrm{bg}=$'+str(gatevals[idx-1])+\
+                r'$\,\mathrm{V}$' )
+
+            idx+=1 # increment the index searched for by 1
+
+    plt.ylabel(r'$I_\mathrm{ds}\,(\mu\mathrm{A})$', fontsize=22)
+    plt.xlabel(r'$V_\mathrm{ds}\,(\mathrm{V})$', fontsize=22)
+    plt.tick_params(labelsize=18) # set labelsize = 18
+    plt.legend(loc='best', prop={'size': 8} ) # set legend location
+    plt.tight_layout() # tighten border edges
+
+    savename= savename+'-linear-plot.png' # set string for saving
+    plt.savefig( savename ) # save fig as png
+
+def plot_AbsDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
+    """
+    /*-----------------------------------------------------*/
+    description:
+   
+    /*-----------------------------------------------------*/
+    args: 
+        
+    returns:
+        None
+    /*----------------------------------------------------*/
+    """
     import matplotlib.pyplot as plt 
-    header = list(df) # get column headers
+    plt.clf()
+    headers = list(df) # get column headers
+    # get a list of gate values 
+    gatevals = generate_GateVoltageList_vds_id(gate_start, gate_final, gate_step)
+    idx = 1 # init an index. To be used for GateV(idx) or DrainV(idx)...
+    # loop over all headers in an analyzed df
+    for head in headers:
+        # check to see if the correct string is found. 
+        # for example the first search is for DrainI(1), then DrainI(2)
+        # and so on.
+        if 'DrainI'+'('+str(idx)+')' == head:
+            # get the column index of the string
+            col_idx = df.columns.get_loc(head)+1 # +2 because we want
+            # the column ahead of it. The DrainI(uA) column
+            # DrainI(uA) = col_idx +2
+            # absDrainI(A) = col_idx +1
+            # NormDrainI(uA/um) = col_idx +3
+
+            # plot each column
+            drainVdata = df['DrainV'+'('+str(idx)+')'] # Vds data
+            plt.semilogy( drainVdata, df[headers[col_idx]], linewidth=4,\
+                label=r'$V_\mathrm{bg}=$'+str(gatevals[idx-1])+\
+                r'$\,\mathrm{V}$' )
+
+            idx+=1 # increment the index searched for by 1
+
+    plt.ylabel(r'$\left|I_\mathrm{ds}\right|\,(\mathrm{A})$', fontsize=22)
+    plt.xlabel(r'$V_\mathrm{ds}\,(\mathrm{V})$', fontsize=22)
+    plt.tick_params(labelsize=18) # set labelsize = 18
+    plt.legend(loc='best', prop={'size': 8} ) # set legend location
+    plt.tight_layout() # tighten border edges
+
+    savename= savename+'-abs-logY-plot.png' # set string for saving
+    plt.savefig( savename ) # save fig as png
+
+def plot_NormDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
+    """
+    /*-----------------------------------------------------*/
+    description:
+   
+    /*-----------------------------------------------------*/
+    args: 
+        
+    returns:
+        None
+    /*----------------------------------------------------*/
+    """
+    import matplotlib.pyplot as plt 
+    plt.clf()
+    headers = list(df) # get column headers
+    # get a list of gate values 
+    gatevals = generate_GateVoltageList_vds_id(gate_start, gate_final, gate_step)
+    idx = 1 # init an index. To be used for GateV(idx) or DrainV(idx)...
+    # loop over all headers in an analyzed df
+    for head in headers:
+        # check to see if the correct string is found. 
+        # for example the first search is for DrainI(1), then DrainI(2)
+        # and so on.
+        if 'DrainI'+'('+str(idx)+')' == head:
+            # get the column index of the string
+            col_idx = df.columns.get_loc(head)+3 # +2 because we want
+            # the column ahead of it. The DrainI(uA) column
+            # DrainI(uA) = col_idx +2
+            # absDrainI(A) = col_idx +1
+            # NormDrainI(uA/um) = col_idx +3
+
+            # plot each column
+            drainVdata = df['DrainV'+'('+str(idx)+')'] # Vds data
+            plt.plot( drainVdata, df[headers[col_idx]], linewidth=4,\
+                label=r'$V_\mathrm{bg}=$'+str(gatevals[idx-1])+\
+                r'$\,\mathrm{V}$' )
+
+            idx+=1 # increment the index searched for by 1
+
+    plt.ylabel(r'$I_\mathrm{ds}\,(\mu\mathrm{A}/\mu\mathrm{m})$', fontsize=22)
+    plt.xlabel(r'$V_\mathrm{ds}\,(\mathrm{V})$', fontsize=22)
+    plt.tick_params(labelsize=18) # set labelsize = 18
+    plt.legend(loc='best', prop={'size': 8} ) # set legend location
+    plt.tight_layout() # tighten border edges
+
+    savename= savename+'-norm-linear-plot.png' # set string for saving
+    plt.savefig( savename ) # save fig as png
 
 def plot_DrainCurrent_res2t(df):
+    """
+    /*-----------------------------------------------------*/
+    description:
+   
+    /*-----------------------------------------------------*/
+    args: 
+        
+    returns:
+        None
+    /*----------------------------------------------------*/
+    """
     import matplotlib.pyplot as plt 
     headers = list(df) # get column headers
 

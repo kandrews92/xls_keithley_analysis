@@ -3,7 +3,7 @@ if __name__=="__main__":
 
     from file_methods import get_FilePaths, get_DataFrames, get_TestName,\
                 get_LastExecuted, get_OnlyFname, get_SubDir, DisplayFiles,\
-                CreateNewXLS
+                CreateNewXLS, PutAllPngToPdf
 
     from res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
                 get_NumPointsBias_res2t, get_DrainCurrent_res2t
@@ -20,7 +20,8 @@ if __name__=="__main__":
 
     from plotting import plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
                 plot_DualAxisDrainCurrent_vgs_id, plot_NormDrainCurrent_vgs_id,\
-                plot_AllSubplots_vgs_id
+                plot_AllSubplots_vgs_id, plot_DrainCurrent_vds_id,\
+                plot_AbsDrainCurrent_vds_id, plot_NormDrainCurrent_vds_id
                 
 
 
@@ -61,9 +62,9 @@ if __name__=="__main__":
                 get_DrainCurrent_vgs_id(data, bias) # convert the data sheet
 
                 # vgs-id plotting methods
-                plot_DrainCurrent_vgs_id(data, bias, subdir+fname)
-                plot_AbsDrainCurrent_vgs_id(data, bias, subdir+fname)
-                plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
+                #plot_DrainCurrent_vgs_id(data, bias, subdir+fname)
+                #plot_AbsDrainCurrent_vgs_id(data, bias, subdir+fname)
+                #plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
                 #plot_AllSubplots_vgs_id(data)
 
             if measurement_name == measurement_types[2]: # vds-id#1@1
@@ -72,5 +73,10 @@ if __name__=="__main__":
                 vbg_step = get_GateVoltageStep_vds_id(settings)
                 get_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step)
 
+                plot_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
+                plot_AbsDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
+                plot_NormDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
+
             CreateNewXLS(data, new_xls) # write new xls file
+    #PutAllPngToPdf(cwd)
 
