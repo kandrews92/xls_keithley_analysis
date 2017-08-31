@@ -19,7 +19,8 @@ if __name__=="__main__":
                 get_DrainCurrent_vds_id
 
     from plotting import plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
-                plot_DualAxisDrainCurrent_vgs_id, plot_NormDrainCurrent_vgs_id
+                plot_DualAxisDrainCurrent_vgs_id, plot_NormDrainCurrent_vgs_id,\
+                plot_AllSubplots_vgs_id
                 
 
 
@@ -58,7 +59,12 @@ if __name__=="__main__":
             if measurement_name == measurement_types[1]: # vgs-id#1@1
                 bias = get_VoltageBias_vgs_id(settings) # get bias voltage 
                 get_DrainCurrent_vgs_id(data, bias) # convert the data sheet
+
+                # vgs-id plotting methods
+                plot_DrainCurrent_vgs_id(data, bias, subdir+fname)
+                plot_AbsDrainCurrent_vgs_id(data, bias, subdir+fname)
                 plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
+                #plot_AllSubplots_vgs_id(data)
 
             if measurement_name == measurement_types[2]: # vds-id#1@1
                 vbg_start = get_GateVoltageStart_vds_id(settings)
