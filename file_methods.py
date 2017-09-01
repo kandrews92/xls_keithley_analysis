@@ -187,6 +187,17 @@ def CreateNewXLS(df, new_fame):
     writer.save() # save file under new name
 
 def PutAllPngToPdf(directory, extension=['.png']):
+    """
+    /*-----------------------------------------------------*/
+    description:
+
+    /*-----------------------------------------------------*/
+    args: 
+
+    returns:
+        
+    /*----
+    """
     from fpdf import FPDF
     import os 
     file_paths = [] # init of list of strings to be returned
@@ -207,3 +218,10 @@ def PutAllPngToPdf(directory, extension=['.png']):
         pdf.add_page()
         pdf.image(image)
     pdf.output("yourfile.pdf", 'F')
+
+def WriteDataFrameToQDA(df):
+    from qdafile import QDAfile
+    QDAfile(
+        df,
+        #headers=list(df)
+        ).write('test.qda')

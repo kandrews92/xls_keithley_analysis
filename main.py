@@ -3,7 +3,7 @@ if __name__=="__main__":
 
     from file_methods import get_FilePaths, get_DataFrames, get_TestName,\
                 get_LastExecuted, get_OnlyFname, get_SubDir, DisplayFiles,\
-                CreateNewXLS, PutAllPngToPdf
+                CreateNewXLS, PutAllPngToPdf, WriteDataFrameToQDA
 
     from res2t import get_VoltageBiasStart_res2t, get_VoltageBiasFinal_res2t,\
                 get_NumPointsBias_res2t, get_DrainCurrent_res2t
@@ -65,6 +65,7 @@ if __name__=="__main__":
                 #plot_AbsDrainCurrent_vgs_id(data, bias, subdir+fname)
                 #plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
                 #plot_AllSubplots_vgs_id(data)
+                #WriteDataFrameToQDA(data)
 
             if measurement_name == measurement_types[2]: # vds-id#1@1
                 vbg_start = get_GateVoltageStart_vds_id(settings)
@@ -73,8 +74,8 @@ if __name__=="__main__":
                 get_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step)
 
                 plot_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
-                plot_AbsDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
-                plot_NormDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
+                #plot_AbsDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
+                #plot_NormDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
 
             CreateNewXLS(data, new_xls) # write new xls file
     #PutAllPngToPdf(cwd)
