@@ -24,7 +24,6 @@ if __name__=="__main__":
                 plot_AbsDrainCurrent_vds_id, plot_NormDrainCurrent_vds_id
                 
 
-
     # three possible types of measurements
     measurement_types = ['res2t#1@1', 'vgs-id#1@1', 'vds-id#1@1']
 
