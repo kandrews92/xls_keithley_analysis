@@ -156,6 +156,7 @@ def DisplayFiles(file_list, currpath, log):
                     paths.
         mypath: the current top path that the script is run 
                 from
+        log: file for output to be written to
     returns:
         None
     /*----------------------------------------------------*/

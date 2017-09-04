@@ -21,7 +21,8 @@ if __name__=="__main__":
     from plotting import plot_DrainCurrent_vgs_id, plot_AbsDrainCurrent_vgs_id,\
                 plot_DualAxisDrainCurrent_vgs_id, plot_NormDrainCurrent_vgs_id,\
                 plot_AllSubplots_vgs_id, plot_DrainCurrent_vds_id,\
-                plot_AbsDrainCurrent_vds_id, plot_NormDrainCurrent_vds_id
+                plot_AbsDrainCurrent_vds_id, plot_NormDrainCurrent_vds_id,\
+                plot_DrainCurrent_res2t
     
     from cmd import CommandLineArgs
 
@@ -37,6 +38,7 @@ if __name__=="__main__":
     measurement_types = ['res2t#1@1', 'vgs-id#1@1', 'vds-id#1@1']
 
     file_extensions = ['.xls'] # file extensions wanted
+
     for ext in file_extensions: log.write("\n\n###--->\tSearching for %s \n\n" % ext)
    
     cwd = os.path.dirname(os.path.abspath(__file__)) # absolute path
@@ -69,7 +71,11 @@ if __name__=="__main__":
             new_xls = subdir+fname+"-analyzed"+file_extensions[0] # new xls name
 
             if measurement_name == measurement_types[0]: # res2t
-                get_DrainCurrent_res2t(data)
+                get_DrainCurrent_res2t(data) # convert the data sheet
+                if plot_flag == True:
+                    # vgs-id plotting methods
+                    log.write("\n###<---\tCreating plots of res2t\n\n")
+                    plot_DrainCurrent_res2t(data, subdir+fname) 
 
             if measurement_name == measurement_types[1]: # vgs-id#1@1
                 bias = get_VoltageBias_vgs_id(settings) # get bias voltage 

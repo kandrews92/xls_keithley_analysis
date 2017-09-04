@@ -32,7 +32,7 @@ def plot_DrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename = savename + 'linear-plot.png'
+    savename = 'python-'+savename + 'linear-plot.png'
     plt.savefig( savename ) # save as png
 
 def plot_AbsDrainCurrent_vgs_id(df, bias, savename):
@@ -63,7 +63,7 @@ def plot_AbsDrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename = savename + '-logY-plot.png'
+    savename = 'python-'+savename + '-logY-plot.png'
     plt.savefig( savename ) # save as png
 
 def plot_DualAxisDrainCurrent_vgs_id(df, bias, savename):
@@ -127,7 +127,7 @@ def plot_NormDrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= savename + "-norm-linear-plot.png" # plot will be saved as png
+    savename= 'python-'+savename + "-norm-linear-plot.png" # plot will be saved as png
     plt.savefig( savename ) # save as png
 
 def plot_AllSubplots_vgs_id(df):
@@ -209,7 +209,7 @@ def plot_DrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= savename+'-linear-plot.png' # set string for saving
+    savename= 'python-'+savename+'-linear-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
 def plot_AbsDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
@@ -257,7 +257,7 @@ def plot_AbsDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename)
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= savename+'-abs-logY-plot.png' # set string for saving
+    savename= 'python-'+savename+'-abs-logY-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
 def plot_NormDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
@@ -305,10 +305,10 @@ def plot_NormDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= savename+'-norm-linear-plot.png' # set string for saving
+    savename= 'python-'+savename+'-norm-linear-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
-def plot_DrainCurrent_res2t(df):
+def plot_DrainCurrent_res2t(df, savename):
     """
     /*-----------------------------------------------------*/
     description:
@@ -321,5 +321,21 @@ def plot_DrainCurrent_res2t(df):
     /*----------------------------------------------------*/
     """
     import matplotlib.pyplot as plt 
+    plt.clf() # clear any figs in buffer
     headers = list(df) # get column headers
 
+    for head in headers:
+        if "Idrain(uA)" in head:
+            col_idx = df.columns.get_loc(head)+2
+    plt.plot( df['AV'], df[headers[col_idx]] ,linewidth=4)
+    plt.xlabel(r'$V_\mathrm{ds}\,(\mathrm{V})$', fontsize=22)
+    
+    if df['AI'].iloc[-1] > 0: # if current is > 0
+        plt.ylabel(r'$I_\mathrm{ds}\,(\mu\mathrm{A})$', fontsize=22)
+    if df['AI'].iloc[-1] < 0: # if current is < 0
+        plt.ylabel(r'$-I_\mathrm{ds}\,(\mu\mathrm{A})$', fontsize=22)
+    plt.tick_params(labelsize=18) # label size = 18
+    plt.tight_layout() # tighten border layout
+    
+    savename = 'python-' + savename + '-linear-plot.png'
+    plt.savefig(savename) # save fig as png

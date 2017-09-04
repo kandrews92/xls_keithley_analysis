@@ -3,7 +3,7 @@
 	Script name: main.py
 
 
-	Run at 2017-09-03 23:42:55.262000
+	Run at 2017-09-04 10:26:53.757000
 
 **************************************************
 
@@ -13,62 +13,21 @@
 
 ###--->	Getting file list in path: C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis
 
-###--->	Found 5 files in C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis
+###--->	Found 1 files in C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis
 
-###--->	[1] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01.xls
-
-
-###--->	[2] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
+###--->	[1] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K.xls
 
 
-###--->	[3] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
+###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K.xls
 
+###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K.xls
 
-###--->	[4] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-
-###--->	[5] C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-
-###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01.xls
-
-###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01.xls
-
-###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01.xls
+###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K.xls
  to dataframes
-###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vds-id#1@_vds_1_-1_vgs_-10_-80V_298K_vac01-analyzed.xls
+###<---	Creating plots of res2t
 
-###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
 
-###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
- to dataframes
-###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#1@_-1V_vgs_20_-80V_L2S_L1D_298K_vac01-analyzed.xls
-
-###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
- to dataframes
-###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#2@_-500mV_vgs_20_-80V_L2S_L1D_298K_vac01-analyzed.xls
-
-###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls
- to dataframes
-###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#3@_-100mV_vgs_20_-80V_L2S_L1D_298K_vac01-analyzed.xls
-
-###--->	Opening C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Opened C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
-
-###--->	Converting C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01.xls
- to dataframes
-###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\vgs-id#4@_-2V_vgs_20_-80V_L2S_L1D_298K_vac01-analyzed.xls
+###<---	Writing computed data from C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K.xls to C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\xls\res2t#1@Vds_0_-1V_R1S_L1D_299K-analyzed.xls
 
 **************************************************
 
