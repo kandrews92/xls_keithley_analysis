@@ -1,6 +1,5 @@
-
 if __name__=="__main__":
-    import sys, os, io, numpy as np, matplotlib.pyplot as plt, pandas as pd
+    import sys, os, io, datetime, numpy as np, matplotlib.pyplot as plt, pandas as pd
 
     from file_methods import get_FilePaths, get_DataFrames, get_TestName,\
                 get_LastExecuted, get_OnlyFname, get_SubDir, DisplayFiles,\
@@ -25,20 +24,29 @@ if __name__=="__main__":
                 plot_AbsDrainCurrent_vds_id, plot_NormDrainCurrent_vds_id
     
     from cmd import CommandLineArgs
-    
-    width, plot_flag = CommandLineArgs(sys.argv) # get cmd line args         
+
+    width, plot_flag = CommandLineArgs(sys.argv) # get cmd line args  
+
+    log = open('log.txt', 'w') # open the log file for writing
+    log.write("*"*50)
+    log.write("\n\n\tScript name: %s\n\n" % sys.argv[0])
+    log.write("\n\tRun at %s\n\n" % datetime.datetime.now())
+    log.write("*"*50)      
     
     # three possible types of measurements
     measurement_types = ['res2t#1@1', 'vgs-id#1@1', 'vds-id#1@1']
 
     file_extensions = ['.xls'] # file extensions wanted
+    for ext in file_extensions: log.write("\n\n###--->\tSearching for %s \n\n" % ext)
+   
     cwd = os.path.dirname(os.path.abspath(__file__)) # absolute path
 
     # get all the files in the current working directory
     # if any subdirs exist it will also return those
     full_file_paths = get_FilePaths(cwd, file_extensions)
+    log.write("\n\n###--->\tGetting file list in path: %s\n" % cwd)
 
-    DisplayFiles(full_file_paths, cwd) # display file results
+    DisplayFiles(full_file_paths, cwd, log) # display file results
 
     # loop over all the files found 
     for fobj in full_file_paths:
@@ -46,8 +54,11 @@ if __name__=="__main__":
         if 'analyzed' in fobj: # skip any already analyzed files
             continue
     	else:
+            log.write("###--->\tOpening %s\n\n" % fobj)
             curr_xls = pd.ExcelFile(fobj) # open excel file 
+            log.write("###--->\tOpened %s\n\n" % fobj)
 
+            log.write("###--->\tConverting %s\n to dataframes" % fobj)
             data, settings = get_DataFrames(curr_xls) # convert xls to data
         
             measurement_name = get_TestName(settings) # get measurement type        
@@ -66,6 +77,7 @@ if __name__=="__main__":
 
                 if plot_flag == True:
                     # vgs-id plotting methods
+                    log.write("\n###<---\tCreating plots of vgs_id\n\n")
                     plot_DrainCurrent_vgs_id(data, bias, subdir+fname)
                     plot_AbsDrainCurrent_vgs_id(data, bias, subdir+fname)
                     plot_NormDrainCurrent_vgs_id(data, bias, subdir+fname)
@@ -77,9 +89,16 @@ if __name__=="__main__":
                 get_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, width)
 
                 if plot_flag == True:
+                    log.write("\n###<---\tCreating plots of vgs_id\n\n")
                     plot_DrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
                     plot_AbsDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
                     plot_NormDrainCurrent_vds_id(data, vbg_start, vbg_final, vbg_step, subdir+fname)
 
+            log.write("\n###<---\tWriting computed data from %s to %s\n\n" %(fobj,new_xls))
             CreateNewXLS(data, new_xls) # write new xls file
-
+    
+    log.write("*"*50)
+    log.write("\n\n\tEnd\n\n")
+    log.write("*"*50)
+    log.close() # close the log file
+    print "\n\n***\tSuccess!\t***\n"

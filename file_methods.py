@@ -144,7 +144,7 @@ def get_SubDir(fobj, delimiter="\\"):
     index = fobj.rfind(delimiter)
     return fobj[:index+1]
 
-def DisplayFiles(file_list, currpath):
+def DisplayFiles(file_list, currpath, log):
     """
     /*-----------------------------------------------------*/
     description:
@@ -161,13 +161,13 @@ def DisplayFiles(file_list, currpath):
     /*----------------------------------------------------*/
     """
     # count the number of files found in tree
-    print "\nFound %d files in %s\n" %(len(file_list), currpath)
+    log.write("\n###--->\tFound %d files in %s\n" %(len(file_list), currpath))
     # loop and print the files found in sucessive order
     # and account for python's zero-indexing when outputting
     # the list. 
     for i in range(len(file_list)):
-        print "[%d] %s" %((i+1), file_list[i])
-    print "\n"
+        log.write("\n###--->\t[%d] %s\n\n" %((i+1), file_list[i]))
+    log.write("\n")
 
 def CreateNewXLS(df, new_fame):
     """

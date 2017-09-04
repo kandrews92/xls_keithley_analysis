@@ -59,7 +59,7 @@ def get_GateVoltageFinal_vgs_id(df):
         # search col for string 'Stop' 
         if df[headers[0]][i] == 'Stop':
             end_idx = i # store index
-    # convert string to int
+    # convert string to float
     return float( df[headers[3]][end_idx] ) 
 
 def get_NumGatePoints_vgs_id(df):
