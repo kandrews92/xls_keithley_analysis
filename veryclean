@@ -1,0 +1,64 @@
+#!/bin/bash
+
+png="*.png"
+pdf="*.pdf"
+pptx="*.pptx"
+ppt="*.ppt"
+xls-analyzed=""
+log="*.log"
+
+countercheck=0
+for f in $(find . -name "$png" -or -name "$pdf"\
+	-or -name "$pptx" -or -name "$ppt" -or -name "$log")
+do
+	countercheck=$((countercheck+1))
+done
+
+if [ "$countercheck" -eq "0" ]
+then 
+	 echo
+	 echo "********************************************************************************"
+     echo
+     echo -e "---> #### \t$countercheck files found to be removed"
+     echo -e "\t${PWD} is already clean..."
+     echo
+     echo "********************************************************************************"
+     echo
+else
+	echo
+	echo "cleaning '${PWD}' for github commit and push..."
+	echo
+	echo "********************************************************************************"
+	echo -e "  removing '$bbl' '$toc' '$aux' '$log' '$blg' '$syn' '$lot' '$lof' '$out'"
+	echo "********************************************************************************"
+	echo
+	counterfound=0
+	counterremoved=0
+	for f in $(find . -name "$png" -or -name "$pdf"\
+	-or -name "$pptx" -or -name "$ppt" -or -name "$log")
+	do  
+		counterfound=$((counterfound+1))
+		echo -e "#### --->\t found $f "
+	done
+	echo
+	echo "********************************************************************************"
+	echo -e "\t $counterfound files found..."
+	echo "********************************************************************************"
+	echo
+
+	for f in $(find . -name "$png" -or -name "$pdf"\
+	-or -name "$pptx" -or -name "$ppt" -or -name "$log")
+	do 
+		counterremoved=$((counterremoved+1))
+		echo -e "xxxx <---\t removing $f "
+		rm $f
+	done
+
+	echo
+	echo -e "\t $counterremoved files removed..."
+	echo
+	echo "${PWD} is now veryclean"
+	echo "********************************************************************************"
+fi
+
+
