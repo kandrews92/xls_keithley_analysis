@@ -32,7 +32,7 @@ def plot_DrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename = 'python-'+savename + 'linear-plot.png'
+    savename = savename + '_python_linear-plot.png'
     plt.savefig( savename ) # save as png
 
 def plot_AbsDrainCurrent_vgs_id(df, bias, savename):
@@ -63,7 +63,7 @@ def plot_AbsDrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename = 'python-'+savename + '-logY-plot.png'
+    savename = savename + '_python_logY-plot.png'
     plt.savefig( savename ) # save as png
 
 def plot_DualAxisDrainCurrent_vgs_id(df, bias, savename):
@@ -127,7 +127,7 @@ def plot_NormDrainCurrent_vgs_id(df, bias, savename):
     plt.legend(loc='best') # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= 'python-'+savename + "-norm-linear-plot.png" # plot will be saved as png
+    savename= savename + "_python_norm-linear-plot.png" # plot will be saved as png
     plt.savefig( savename ) # save as png
 
 def plot_AllSubplots_vgs_id(df):
@@ -209,7 +209,7 @@ def plot_DrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= 'python-'+savename+'-linear-plot.png' # set string for saving
+    savename= savename+'_python_linear-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
 def plot_AbsDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
@@ -257,7 +257,7 @@ def plot_AbsDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename)
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= 'python-'+savename+'-abs-logY-plot.png' # set string for saving
+    savename= savename+'_python_abs-logY-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
 def plot_NormDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename):
@@ -305,7 +305,7 @@ def plot_NormDrainCurrent_vds_id(df, gate_start, gate_final, gate_step, savename
     plt.legend(loc='best', prop={'size': 8} ) # set legend location
     plt.tight_layout() # tighten border edges
 
-    savename= 'python-'+savename+'-norm-linear-plot.png' # set string for saving
+    savename= savename+'_python_norm-linear-plot.png' # set string for saving
     plt.savefig( savename ) # save fig as png
 
 def plot_DrainCurrent_res2t(df, savename):
@@ -337,5 +337,5 @@ def plot_DrainCurrent_res2t(df, savename):
     plt.tick_params(labelsize=18) # label size = 18
     plt.tight_layout() # tighten border layout
     
-    savename = 'python-' + savename + '-linear-plot.png'
+    savename =  savename + '_python_linear-plot.png'
     plt.savefig(savename) # save fig as png

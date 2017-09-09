@@ -313,3 +313,18 @@ def unique_headers(number):
                 number -= 1
     raise NotImplementedError()
 
+if __name__=="__main__":
+    import pandas as pd 
+    import numpy as np
+    df = pd.DataFrame(np.random.randint(0,100,size=(100,1)), columns=list('W'))
+    fobj = QDAfile()
+    # fobj.data = df
+    #print(fobj.data)
+    print(type(fobj.data))
+    fobj.data = np.zeros((10,1))
+    fobj.rows = fobj.data.shape[0]
+    fobj.columns = fobj.data.shape[1]
+    print(fobj.data)
+    print(fobj.rows)
+    print(fobj.columns)
+    fobj.write('abc.qda')

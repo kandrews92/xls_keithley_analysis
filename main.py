@@ -31,7 +31,7 @@ if __name__=="__main__":
     log = open('log.txt', 'w') # open the log file for writing
     log.write("*"*50)
     log.write("\n\n\tScript name: %s\n\n" % sys.argv[0])
-    log.write("\n\tRun at %s\n\n" % datetime.datetime.now())
+    log.write("\n\tCreated on %s\n\n" % datetime.datetime.now())
     log.write("*"*50)      
     
     # three possible types of measurements
