@@ -123,3 +123,12 @@ if __name__=="__main__":
     # save presentation
     prs.save('output.pptx')
 
+#########################################################
+# 
+#   TO DO:
+#       come up with a way to order pictures
+#       in a way that they are able to read 
+#       and saved to ppt in progressive order
+#
+#########################################################
+
