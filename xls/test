@@ -1,0 +1,6 @@
+#!/bin/bash
+string="analyzed.xls"
+
+for file in ~/Documents/python/xls_keithley_analysis/xls/*; do
+	echo ${file}
+done
