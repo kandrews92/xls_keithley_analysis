@@ -93,58 +93,34 @@ if __name__=="__main__":
     # sort the images [oldest, ..., newest]
     generate_SortedFiles(img_file_path)
 
-    # group images in groups of 4 and loop
+    # group images in groups of n and loop (n = 4)
     group_imgs = generate_Groups(img_file_path, 4)
     for group in group_imgs:
-        # loop over image in each group 
-        pass
-
-    """
-
-    curr = 0
-    while curr < int( len( img_file_path )/ 4 ):
-        # add blank slide
+        # add a blank slide for each group of n
         slide = prs.slides.add_slide(prs.slide_layouts[6])
-        # get the image from list using curr as idx
-        image = img_file_path[curr]
-        # get image as numpy 2d array
-        img = scipy.misc.imread(image)
-        # set width based on slide width
-        width = int(prs.slide_width * 0.5)
-        # set height to size of width; for square imgs
-        height = int(width * img.shape[0]/img.shape[1])
-        # generate pic coords array
-        coords = generate_PicCoords(width, height)
-        
-        # add pics to slide
-        # assign x, y coords
-        x = coords[0][0]; y = coords[0][1]
-        pic = slide.shapes.add_picture(image, x, y, height)
-        
-        # get next image
-        image = img_file_path[curr+1]
-        # update x, y coords
-        x = coords[1][0]; y = coords[1][1]
-        pic = slide.shapes.add_picture(image, x, y, height)
-       
-        # get next image
-        image = img_file_path[curr+2]
-        # update x, y coords
-        x = coords[2][0]; y = coords[2][1]
-        pic = slide.shapes.add_picture(image, x, y, height)
+        # loop over image in each group of n
+        for i in range( len(group) ):
+            # img as 2d numpy array
+            # if group has nonetype in it then
+            # attribute error is raised and we skip 
+            # that image
+            try:
+                img = scipy.misc.imread( group[i] )
+            except AttributeError:
+                continue # go to top of loop
+            # set width
+            width = int(prs.slide_width * 0.5)
+            # set height based on img dims
+            height = int(width * img.shape[0]/img.shape[1])
+            # generate coordinate array
+            xy = generate_PicCoords(width, height)
+            #xy[i][0] = width coordinate; xy[i][1] = height coordinate
+            # add img to slide (img is accessed as group[i])
+            pic = slide.shapes.add_picture(group[i], xy[i][0], xy[i][1], height)
 
-        # get next image 
-        image = img_file_path[curr+3]
-        # update x, y coords
-        x = coords[3][0]; y = coords[3][1]
-        pic = slide.shapes.add_picture(image, x, y, height)
-
-        # update curr idx
-        curr += 1
-
-    # save presentation
+    # save ppt presentation
     prs.save('test.pptx')
-    """
+
 #########################################################
 # 
 #   TO DO:
