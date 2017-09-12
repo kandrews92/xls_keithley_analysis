@@ -60,6 +60,18 @@ def generate_PicCoords(x, y):
     return [ [0,0], [x, 0], [0, y], [x, y] ]
 
 
+def generate_Groups(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    from itertools import izip_longest
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)
+
+def generate_SortedFiles(f_list):
+    import os
+    f_list.sort(key=lambda x: os.path.getmtime(x))
+
+
 if __name__=="__main__":
     import pptx
     import pptx.util
@@ -71,13 +83,23 @@ if __name__=="__main__":
     # absolute path
     cwd = os.path.dirname(os.path.abspath(__file__)) 
 
-    # put image paths into list
-    img_file_path = get_FilePaths(cwd, img_extensions)
     # init new presentation
     prs = pptx.Presentation()
-
     # set slide height @ 4:3
     prs.slide_height = 6858000
+
+    # put image paths into list
+    img_file_path = get_FilePaths(cwd, img_extensions)
+    # sort the images [oldest, ..., newest]
+    generate_SortedFiles(img_file_path)
+
+    # group images in groups of 4 and loop
+    group_imgs = generate_Groups(img_file_path, 4)
+    for group in group_imgs:
+        # loop over image in each group 
+        pass
+
+    """
 
     curr = 0
     while curr < int( len( img_file_path )/ 4 ):
@@ -121,8 +143,8 @@ if __name__=="__main__":
         curr += 1
 
     # save presentation
-    prs.save('output.pptx')
-
+    prs.save('test.pptx')
+    """
 #########################################################
 # 
 #   TO DO:
