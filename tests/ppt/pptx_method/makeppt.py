@@ -98,8 +98,9 @@ def generate_SortedFiles(f_list):
     /*-----------------------------------------------------*/
     description:
         Sort a list of files by date created. This defaults 
-        to sorting by [newest, ..., oldest], but to change 
-        this to the reverse then add: f_list.reverse() at 
+        to sorting by [newest, ..., oldest] (this is 
+        quasi-FIFO), but to change this to the reverse
+        (this is quasi-LIFO) then add: f_list.reverse() at 
         the end of the function
     /*-----------------------------------------------------*/
     args: 
@@ -159,14 +160,9 @@ if __name__=="__main__":
             pic = slide.shapes.add_picture(group[i], xy[i][0], xy[i][1], height)
 
     # save ppt presentation
-    prs.save('test.pptx')
-
-#########################################################
-# 
-#   TO DO:
-#       come up with a way to order pictures
-#       in a way that they are able to read 
-#       and saved to ppt in progressive order
-#
-#########################################################
-
+    try:
+        prs.save(cwd+'test.pptx')
+    except IOError:
+        print
+        print "Close PowerPoint and re-run"
+        print
