@@ -61,13 +61,53 @@ def generate_PicCoords(x, y):
 
 
 def generate_Groups(iterable, n, fillvalue=None):
-    "Collect data into fixed-length chunks or blocks"
-    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    """
+    /*-----------------------------------------------------*/
+    description:
+        Take an iterable object and create groups of length 
+        n.
+    /*-----------------------------------------------------*/
+    args: 
+        iterable: an object to be iterated over, can be list,
+            string, tuple, etc...
+
+        n: the length of each group
+
+        fillvalue: (defaults to None) this is used when
+            len(iterable) % n != 0, then fillvalue completes
+            the remaining spaces in the group (see examples 
+            below)
+    returns:
+        an iterator object
+
+        ** Example:
+        generate_Groups('ABCDEFG', 3, 'x') produces
+        --> ('A', 'B', 'C'), ('D', 'E', 'F'), ('G', 'x', 'x')
+
+        ** Example:
+        generate_Groups([1,2,3,4,5], 2) produces
+        --> (1, 2), (3, 4), (5, None)
+    /*----------------------------------------------------*/
+    """
     from itertools import izip_longest
     args = [iter(iterable)] * n
     return izip_longest(fillvalue=fillvalue, *args)
 
 def generate_SortedFiles(f_list):
+    """
+    /*-----------------------------------------------------*/
+    description:
+        Sort a list of files by date created. This defaults 
+        to sorting by [newest, ..., oldest], but to change 
+        this to the reverse then add: f_list.reverse() at 
+        the end of the function
+    /*-----------------------------------------------------*/
+    args: 
+        f_list: a list of files
+    returns:
+        No return. f_list is passed by reference.
+    /*----------------------------------------------------*/
+    """
     import os
     f_list.sort(key=lambda x: os.path.getmtime(x))
 
