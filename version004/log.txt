@@ -1,0 +1,22 @@
+**************************************************
+
+	Script name: main.py
+
+
+	Created on 2017-09-12 20:34:41.936000
+
+**************************************************
+
+###--->	Searching for .xls 
+
+
+
+###--->	Getting file list in path: C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\version004
+
+###--->	Found 0 files in C:\Users\Kraig Andrews\Documents\python\xls_keithley_analysis\version004
+
+**************************************************
+
+	End
+
+**************************************************

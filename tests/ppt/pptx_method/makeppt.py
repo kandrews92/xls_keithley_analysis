@@ -118,9 +118,10 @@ if __name__=="__main__":
     import pptx.util
     import scipy.misc
     import os
+    import time 
 
     # image file extensions
-    img_extensions = ['.png', '.jpeg']
+    img_extensions = ['.png', '.jpg', '.jpeg', '.tiff']
     # absolute path
     cwd = os.path.dirname(os.path.abspath(__file__)) 
 
@@ -132,7 +133,6 @@ if __name__=="__main__":
     # put image paths into list
     img_file_path = get_FilePaths(cwd, img_extensions)
     # sort the images [oldest, ..., newest]
-    generate_SortedFiles(img_file_path)
 
     # group images in groups of n and loop (n = 4)
     group_imgs = generate_Groups(img_file_path, 4)
@@ -161,7 +161,7 @@ if __name__=="__main__":
 
     # save ppt presentation
     try:
-        prs.save(cwd+'test.pptx')
+        prs.save('test.pptx')
     except IOError:
         print
         print "Close PowerPoint and re-run"
